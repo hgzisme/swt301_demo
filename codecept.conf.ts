@@ -1,5 +1,4 @@
 import { setHeadlessWhen, setCommonPlugins } from '@codeceptjs/configure';
-
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
 setHeadlessWhen(process.env.HEADLESS);
@@ -7,22 +6,18 @@ setHeadlessWhen(process.env.HEADLESS);
 // enable all common plugins https://github.com/codeceptjs/configure#setcommonplugins
 setCommonPlugins();
 
-/** @type {CodeceptJS.MainConfig} */
-export const config = {
-  tests: './tests/*_test.js',
+export const config: CodeceptJS.MainConfig = {
+  tests: './*_test.ts',
   output: './output',
   helpers: {
     Playwright: {
       browser: 'chromium',
-      url: 'http://localhost:5173',
-      show: true,
-      waitForNavigation: 'networkidle0',
-      timeout: 10000
+      url: 'http://localhost',
+      show: true
     }
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file'
   },
-  name: 'date-time-checker',
-  fullPromiseBased: false
+  name: 'codecept2'
 }
