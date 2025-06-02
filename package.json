@@ -1,32 +1,29 @@
 {
-  "name": "codecept2",
-  "version": "1.0.0",
-  "description": "AI-powered testing suite using CodeceptJS",
-  "main": "index.js",
-  "scripts": {
-    "test": "codeceptjs run",
-    "test:ui": "codeceptjs ui",
-    "test:headless": "HEADLESS=true codeceptjs run",
-    "test:parallel": "codeceptjs run-parallel --parallel 2",
-    "report": "allure serve output"
-  },
-  "keywords": [
-    "testing",
-    "codeceptjs",
-    "ai-testing",
-    "e2e"
-  ],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@codeceptjs/ui": "^1.2.4",
-    "@types/node": "^22.15.21",
-    "codeceptjs": "^3.7.3",
-    "playwright": "^1.52.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
-  },
-  "dependencies": {
-    "@codeceptjs/configure": "^1.0.4"
-  }
+    "name": "codecept3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "codeceptjs": "codeceptjs run --steps",
+        "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",
+        "codeceptjs:ui": "codecept-ui --app",
+        "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
+        "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
+        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@codeceptjs/configure": "^1.0.4",
+        "@codeceptjs/examples": "^1.2.4",
+        "@codeceptjs/ui": "^1.2.4",
+        "codeceptjs": "^3.7.3",
+        "playwright": "^1.52.0"
+    },
+    "dependencies": {
+        "@google/generative-ai": "^0.24.1",
+        "dotenv": "^16.5.0"
+    }
 }
