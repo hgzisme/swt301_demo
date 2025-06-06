@@ -16,7 +16,7 @@ exports.config = {
   helpers: {
     Playwright: {
       browser: 'chromium',
-      url: 'https://facebook.com',
+      url: 'http://localhost:3000',
       show: true,
       windowSize: '1920x1080',
       waitForTimeout: 15000,
@@ -26,11 +26,8 @@ exports.config = {
         args: ['--no-sandbox', '--disable-dev-shm-usage']
       }
     }
-  },
-  include: {
-    I: './steps_file.js',
-    facebookPage: './facebook_page_objects.js',
-    facebookAI: './facebook_ai_steps.js'
+  }, include: {
+    I: './steps_file.js'
   },
   ai: {
     request: async messages => {
@@ -44,22 +41,18 @@ exports.config = {
           topP: 0.8,
           maxOutputTokens: 2048,
         }
-      })
-
-      // Enhanced prompt for Facebook testing
-      const facebookContext = `
-        You are an AI testing assistant for Facebook.com. Consider:
-        - Facebook uses dynamic selectors and data-testid attributes
-        - Respect privacy and security - don't create real accounts
-        - Test public pages and features only
-        - Consider mobile responsiveness and accessibility
-        - Be aware of rate limiting and anti-bot measures
-        - Focus on UI validation rather than functional account creation
+      })      // Enhanced prompt for general AI testing
+      const testingContext = `
+        You are an AI testing assistant. Consider:
         - Generate realistic but fake test data
-        - Prioritize user experience and accessibility testing
+        - Focus on UI validation and user experience
+        - Consider accessibility and mobile responsiveness
+        - Be aware of rate limiting and security measures
+        - Prioritize comprehensive test coverage
+        - Use appropriate selectors and wait strategies
       `;
 
-      const prompt = facebookContext + '\n\n' + messages.map(msg => msg.content).join('\n\n')
+      const prompt = testingContext + '\n\n' + messages.map(msg => msg.content).join('\n\n')
 
       try {
         const result = await model.generateContent(prompt)
@@ -73,13 +66,7 @@ exports.config = {
   }, plugins: {
     heal: {
       enabled: true,
-      healLimit: 3,
-      customLocators: {
-        'facebook_email': ['[data-testid="royal-email"]', '#email', '[name="email"]'],
-        'facebook_password': ['[data-testid="royal-pass"]', '#pass', '[name="pass"]'],
-        'facebook_login': ['[data-testid="royal-login-button"]', '[name="login"]', 'button[type="submit"]'],
-        'facebook_signup': ['[data-testid="open-registration-form-button"]', 'a[data-testid*="registration"]']
-      }
+      healLimit: 3
     },
     retryFailedStep: {
       enabled: true,
