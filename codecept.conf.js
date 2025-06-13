@@ -12,16 +12,33 @@ setCommonPlugins();
 /** @type {CodeceptJS.MainConfig} */
 exports.config = {
   tests: './*_test.js',
-  output: './output',
-  helpers: {
+  output: './output', helpers: {
     Playwright: {
       browser: 'chromium',
+<<<<<<< Updated upstream
       url: 'https://getbootstrap.com/docs/5.2/examples/checkout/',
       show: true
     }
   },
   include: {
     I: './steps_file.js'
+=======
+      url: 'https://www.amazon.com',
+      show: true,
+      windowSize: '1920x1080',
+      waitForTimeout: 15000,
+      waitForAction: 2000,
+      waitForNavigation: 'networkidle0',
+      chromium: {
+        args: ['--no-sandbox', '--disable-dev-shm-usage']
+      }
+    }
+  }, include: {
+    I: './steps_file.js',
+    amazonPage: './pages/AmazonPage.js',
+    searchPage: './pages/SearchPage.js',
+    productPage: './pages/ProductPage.js'
+>>>>>>> Stashed changes
   },
   ai: {
     request: async messages => {

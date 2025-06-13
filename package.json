@@ -10,7 +10,13 @@
         "codeceptjs:ui": "codecept-ui --app",
         "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
         "codeceptjs:demo:headless": "HEADLESS=true codeceptjs run --steps -c node_modules/@codeceptjs/examples",
-        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples"
+        "codeceptjs:demo:ui": "codecept-ui --app  -c node_modules/@codeceptjs/examples",
+        "demo": "node demo.js",
+        "amazon:search": "codeceptjs run tests/amazon_search_test.js --steps",
+        "amazon:cart": "codeceptjs run tests/amazon_cart_test.js --steps",
+        "amazon:ai": "codeceptjs run ai_amazon_comprehensive_test.js --steps",
+        "amazon:all": "codeceptjs run tests/amazon_* ai_amazon_* --steps",
+        "setup": "echo 'Please copy .env.example to .env and configure your API keys'"
     },
     "keywords": [],
     "author": "",
