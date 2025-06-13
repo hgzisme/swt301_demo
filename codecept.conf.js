@@ -15,14 +15,6 @@ exports.config = {
   output: './output', helpers: {
     Playwright: {
       browser: 'chromium',
-<<<<<<< Updated upstream
-      url: 'https://getbootstrap.com/docs/5.2/examples/checkout/',
-      show: true
-    }
-  },
-  include: {
-    I: './steps_file.js'
-=======
       url: 'https://www.amazon.com',
       show: true,
       windowSize: '1920x1080',
@@ -38,18 +30,17 @@ exports.config = {
     amazonPage: './pages/AmazonPage.js',
     searchPage: './pages/SearchPage.js',
     productPage: './pages/ProductPage.js'
->>>>>>> Stashed changes
   },
   ai: {
     request: async messages => {
       const { GoogleGenerativeAI } = require('@google/generative-ai')
-      
+
       const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-05-20" })
-      
+
       // Convert CodeceptJS message format to simple prompt
       const prompt = messages.map(msg => msg.content).join('\n\n')
-      
+
       try {
         const result = await model.generateContent(prompt)
         const response = await result.response
